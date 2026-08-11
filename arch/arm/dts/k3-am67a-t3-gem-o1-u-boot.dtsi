@@ -36,6 +36,15 @@
 	};
 };
 
+/*
+ * vdd_sd_dv is a regulator-gpio on main_gpio1; without a bootph tag the GPIO
+ * controller is trimmed out of the SPL device tree, so SPL cannot switch the
+ * SD signalling voltage and sdhci prints "failed to set vqmmc-voltage".
+ */
+&main_gpio1 {
+	bootph-all;
+};
+
 &usbss0 {
 	bootph-pre-ram;
 	status = "okay";
